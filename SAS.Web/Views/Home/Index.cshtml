@@ -1,0 +1,20 @@
+﻿@using System.Web.Optimization;
+
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SAS Project</title>
+    @Styles.Render("~/content/css")
+</head>
+<body ng-controller="rootCtrl">
+    <div id="main">
+        <div ng-view></div>
+    </div>
+    @Scripts.Render("~/bundles")
+    @Scripts.Render("~/bundles/app")
+</body>
+</html>
+
+

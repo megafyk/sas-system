@@ -1,0 +1,6 @@
+﻿<div>
+    <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">
+        <a class="btn btn-primary btn-primary-mod" ng-hide="page == 0" ng-click="search(page-1)">Prev</a>
+        <a class="btn btn-primary btn-primary-mod" ng-hide="page == pagesCount - 1" ng-click="search(pagePlus(1))">Next</a>
+    </div>
+</div>

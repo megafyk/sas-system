@@ -1,0 +1,159 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-warning btn-warning-mod pull-right " ng-click="logout()">Logout</button>
+        </div>
+    </div>
+    <div style="padding-bottom:100px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <button class="btn btn-primary btn-primary-mod btn-block">Announcement</button>
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btn-primary btn-primary-mod btn-block">Student Master</button>
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btn-primary btn-primary-mod btn-block">Master Setting</button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-primary btn-block btn-xl" style="border:none!important">Announcement</button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Number of records: <b>{{totalCount}}</b></h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <tr>
+                    <th style="width:30px"><label><input type="checkbox" ng-click="toggleAll()" ng-model="isAllSelected"><span></span></label></th>
+                    <th style="width:70px">No</th>
+                    <th style="width:100px">Schedule Date</th>
+                    <th style="width:100px">Post Date</th>
+                    <th style="width:200px">Subject</th>
+                    <th style="width:400px">Contents</th>
+                    <th style="width:200px">Recipients</th>
+                    <th style="width:150px">Status</th>
+                </tr>
+                <tr ng-repeat="ann in announcements">
+                    <td><label><input type="checkbox" ng-model="options[$index].selected" ng-change="optionToggled()"><span></span></label></td>
+                    <td>{{page*5+$index+1}}</td>
+                    <td>{{ann.ScheduleDate|date:'dd-MMM-yyyy'}}</td>
+                    <td>{{ann.PostDate|date:'dd-MMM-yyyy'}}</td>
+                    <td>
+                        <div ng-if="ann.Subject.length<=20"><a href="" target="_blank" style="text-decoration:underline">{{ann.Subject}}</a></div>
+                        <div ng-if="ann.Subject.length>20"><a href="" target="_blank" style="text-decoration:underline">{{ann.Subject | limitTo: 20}}...</a></div>
+                    </td>
+                    <td>
+                        <div ng-if="ann.Contents.length<=50">{{ann.Contents}}</div>
+                        <div ng-if="ann.Contents.length>50">{{ann.Contents | limitTo: 50}}...</div>
+                    </td>
+                    <td>
+                        <div ng-if="ann.UserClass =='01' && ann.Rcv_Copo!=null && ann.Rcv_Copo.length<=20">{{ann.Rcv_Copo}}</div>
+                        <div ng-if="ann.UserClass =='01' && ann.Rcv_Copo!=null && ann.Rcv_Copo.length>20">{{ann.Rcv_Copo|limitTo: 20}}...</div>
+                        <div ng-if="ann.UserClass =='01' && ann.Rcv_Group!=null && ann.Rcv_Group.length<=20">Grade {{ann.Rcv_Group}}</div>
+                        <div ng-if="ann.UserClass =='01' && ann.Rcv_Copo!=null && ann.Rcv_Group.length>20">Grade {{ann.Rcv_Group | limitTo: 20}}...</div>
+                        <div ng-if="ann.UserClass =='02' && ann.Rcv_Class!=null && ann.Rcv_Class.length<=20">Class {{ann.Rcv_Class}}</div>
+                        <div ng-if="ann.UserClass =='02' && ann.Rcv_Class!=null ann.Rcv_Class.length>20">Class {{ann.Rcv_Class|limitTo:20}}...</div>
+                    </td>
+                    <td>
+                        <div ng-if="ann.Status=='00'">Pending</div>
+                        <div ng-if="ann.Status=='01'">Successful</div>
+                        <div ng-if="ann.Status=='02'"><a href="" target="_blank" style="text-decoration:underline">Unsuccessful</a></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="pull-right">Page {{page+1}} of {{pagesCount}}</p>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-2 pull-left">
+            <div class="pull-left">
+                <button style="margin-right:10px" class="btn btn-primary btn-primary-mod btn-sm" ng-click="isShow=!isShow">Add</button>
+                <button class="btn btn-danger btn-danger-mod btn-sm" ng-click="delete()">Delete</button>
+            </div>
+        </div>
+        <div class="col-lg-8"></div>
+        <div class="col-lg-2">
+            <div class="pull-right">
+                <custom-pager class="text-center" page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></custom-pager>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div ng-show="isShow">
+        <hr class="hr-style">
+        <div class="container">
+            <div>
+                <form ng-submit="create()">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="border-checkbox">
+                                <label style="padding:6px 0 0 25px"><input type="checkbox" ng-model="ann.isToAdmin" /><span></span></label>
+                                <span style="padding: 10px 0 15px 2px">Email to <span style="font-weight:bold">Admin</span></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="rectangle">
+                                <span class="msg-head">New Message</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="material-input">
+                            <input id="inputSubject" placeholder=" " type="text" ng-model="ann.subject" required /><label for="Subject">Subject</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="material-textarea">
+                            <textarea id="inputContents" placeholder=" " ng-model="ann.contents" required></textarea><label for="Contents">Contents</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div ng-show="showModal">
+                                <modal user="{{userClass}}" load="load()"></modal>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <md-content>
+                                <md-datepicker ng-model="ann.scheduleDate" md-placeholder="DD/MM/YYYY"></md-datepicker>
+                            </md-content>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary btn-primary-mod" ng-click="recipients()">Recipients</button>
+                                <button class="btn btn-primary btn-primary-mod" type="submit">Save</button>
+                                <button type="button" class="btn btn-primary btn-primary-mod" ng-click="clear()">Clear</button>
+                                <button type="button" class="btn btn-primary btn-primary-mod" ng-click="isShow=close()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

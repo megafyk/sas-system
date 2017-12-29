@@ -1,0 +1,48 @@
+﻿<md-content class="page-login" layout="row" layout-align="space-around" layout-padding="layout-padding" ng-cloak="ng-cloak">
+    <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-progress-linear md-mode="indeterminate" ng-show="Form.$submitted && !msgLogin" class="md-accent"></md-progress-linear>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>SAS System</span>
+                </h2>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <form name="Form" ng-submit="login()">
+                <div style="margin: 0 0 7px 2px; color:red">{{msgLogin}}</div>
+                <div class="">
+                    <md-input-container class="md-block">
+                        <label>Login</label>
+                        <input id="inputUsr" type="text" name="username" ng-model="user.username" md-maxlength="8" ng-maxlength="8" ng-minlength="8" required="" multiple="">
+                        <div ng-messages="Form.username.$error" role="alert" ng-if="Form.username.$touched">
+                            <div class="my-message" ng-message="required">{{maintMsg.description.rqdUsername}}</div>
+                            <div class="my-message" ng-message="minlength">{{maintMsg.description.minUsername}}</div>
+                            <div class="my-message" ng-message="maxlength">{{maintMsg.description.maxUsername}}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="">
+                    <md-input-container class="md-block">
+                        <label>Password</label>
+                        <input type="password" name="password" ng-model="user.password" ng-pattern="/^\d+$/" required=""
+                               ng-maxlength="8" ng-minlength="8" multiple="">
+                        <div ng-messages="Form.password.$error" role="alert" ng-if="Form.password.$touched">
+                            <div class="my-message" ng-message="required">{{maintMsg.description.rqdPassword}}</div>
+                            <div class="my-message" ng-message="pattern">{{maintMsg.description.dirtyPassword}}</div>
+                            <div class="my-message" ng-message="minlength">{{maintMsg.description.dirtyPassword}}</div>
+                            <div class="my-message" ng-message="maxlength">{{maintMsg.description.dirtyPassword}}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="">
+                    <md-checkbox class="md-primary" ng-model="user.rememberme" aria-label="Remember Me">Remember Me</md-checkbox>
+                </div>
+                <div class="row">
+                    <md-button type="submit" class="md-raised md-primary" ng-disabled="!Form.$valid">&nbsp Login &nbsp</md-button>
+                    <md-button class="md-raised md-warn" ng-click="clear()">&nbsp Clear &nbsp</md-button>
+                </div>
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>

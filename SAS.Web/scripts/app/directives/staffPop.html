@@ -1,0 +1,94 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <lable>Filter Field</lable>
+        </div>
+        <div class="col-lg-1">
+            <button type="button" class="btn btn-primary btn-primary-mod btn-block" ng-click="addAllStudents()">Add All</button>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <select class="form-control" ng-model="abc1" ng-options="x for x in grades" ng-change="gradeChange(abc1)" ng-init="abc1='1'"></select>
+        </div>
+        <div class="col-lg-1">
+            <button type="button" class="btn btn-primary btn-primary-mod btn-block" ng-click="addAllStudentsOfGrade()">Add</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <select class="form-control" ng-model="abc2" ng-options="y for y in classes" ng-change="classChange(abc2)" ng-init="abc2='A'"></select>
+        </div>
+        <div class="col-lg-1">
+            <button type="button" class="btn btn-primary btn-primary-mod btn-block" ng-click="addAllStudentsOfClass()">Add</button>
+        </div>
+        <div class="col-lg-9">
+            <div class="pull-right">
+                <label>Page {{pageStaffTbl1}} of {{pageCountStaffTbl1}}</label>
+                <custom-pager class="text-center" page="{{pageStaffTbl1}}" custom-path="{{customPath}}" pages-count="{{pageCountStaffTbl1}}" total-count="{{totalCountStaffTbl1}}" search-func="searchStudent(page)"></custom-pager>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <tr>
+                    <th style="width:30px">
+                        <label><input type="checkbox" ng-click="toggleAllStudents(optionsStudent[6].selected)" /><span></span></label>
+                    </th>
+                    <th style="width:70px">No</th>
+                    <th style="width:200px">Grade</th>
+                    <th style="width:200px">Class</th>
+                    <th style="width:200px">Name</th>
+                </tr>
+                <tr ng-repeat="stu in students">
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsStudent[$index].selected" ng-change="optionStudentToggled()" /><span></span></label>
+                    </td>
+                    <td>{{pageStaffTbl1*7+$index+1}}</td>
+                    <td>{{stu.Grade}}</td>
+                    <td>{{stu.Class}}</td>
+                    <td>{{stu.Name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row pull-right">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-primary-mod" ng-click="addOptionsStudent()">Add</button>
+            <button type="button" class="btn btn-primary btn-primary-mod" ng-click="removeOptionsStudent()">Remove</button>
+            <button type="button" class="btn btn-primary btn-primary-mod" ng-click="clearAllRecvs()">Clear</button>
+        </div>
+    </div>
+</div>
+
+<hr class="hr-style">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered fixed_headers">
+                <tr>
+                    <th>No</th>
+                    <th>Grade</th>
+                    <th>Class</th>
+                    <th>Name</th>
+                </tr>
+                <tr ng-repeat="lis in listRecv">
+                    <td>{{$index+1}}</td>
+                    <td>{{lis.Grade}}</td>
+                    <td>{{lis.Class}}</td>
+                    <td>{{lis.Name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row pull-right">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-primary-mod" ng-click="okStaffPop()">OK</button>
+            <button type="button" class="btn btn-primary btn-primary-mod" ng-click="closeStaffPop()">Cancel</button>
+        </div>
+    </div>
+</div>
+

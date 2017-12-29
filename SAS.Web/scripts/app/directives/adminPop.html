@@ -1,0 +1,85 @@
+﻿<div class="container">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <form>
+            <table class="table table-bordered text-center">
+                <tr>
+                    <td>
+                        <label><input type="checkbox" ng-click="optionsAdminPopToggledAll(optionsAdminPop[0].selected)" ng-model="isAllAdPopSelected" /><span></span></label>
+                        <label>All Schools</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[0].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[0].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[1].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[1].CoporationName}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[2].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[2].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[3].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[3].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[4].selected" ng-change="optionAdminPopToggled()"/><span></span></label>
+                        <label>{{copos[4].CoporationName}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[5].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[5].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[6].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[6].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[7].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[7].CoporationName}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[8].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[8].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[9].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[9].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[10].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[10].CoporationName}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[11].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[11].CoporationName}}</label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" ng-model="optionsAdminPop[12].selected" ng-change="optionAdminPopToggled()" /><span></span></label>
+                        <label>{{copos[12].CoporationName}}</label>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-primary-mod" ng-click="okAdPop()">OK</button>
+                        <button type="button" class="btn btn-primary btn-primary-mod" ng-click="closeAdPop()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
